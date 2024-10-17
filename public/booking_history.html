@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .booking-list {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .booking-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="services.html">Available Services</a></li>
+            <li><a href="book.html">Book a Service</a></li>
+            <li><a href="booking_history.html">Your Booking History</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Booking History Section -->
+    <section id="booking-history">
+        <h2>Your Booking History</h2>
+        <div class="booking-list" id="booking-list">
+            <!-- Dynamically add more bookings here -->
+        </div>
+        <p id="no-bookings"><em>No bookings to show.</em></p>
+    </section>
+
+    <script>
+        // Assuming you have stored the username after login (using session or localStorage)
+        const username = localStorage.getItem('username') || 'testUser'; // Change 'testUser' to the default username or replace with session-based user
+
+        // Function to fetch booking history
+        async function fetchBookingHistory() {
+            try {
+                const response = await fetch(`/bookings/${username}`); // Fetch bookings by username
+                if (!response.ok) {
+                    throw new Error('Failed to fetch booking history');
+                }
+
+                const bookings = await response.json();
+
+                // Select the booking list element
+                const bookingList = document.getElementById('booking-list');
+                const noBookingsMessage = document.getElementById('no-bookings');
+
+                // Clear previous booking items
+                bookingList.innerHTML = '';
+
+                if (bookings.length > 0) {
+                    // Hide the "no bookings" message
+                    noBookingsMessage.style.display = 'none';
+
+                    // Iterate through the bookings and create elements for each one
+                    bookings.forEach(booking => {
+                        const bookingItem = document.createElement('div');
+                        bookingItem.classList.add('booking-item');
+                        bookingItem.textContent = `Service: ${booking.service} on ${new Date(booking.date).toLocaleDateString()}`;
+                        bookingList.appendChild(bookingItem);
+                    });
+                } else {
+                    // Show the "no bookings" message if no bookings are found
+                    noBookingsMessage.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+            }
+        }
+
+        // Fetch booking history on page load
+        document.addEventListener('DOMContentLoaded', fetchBookingHistory);
+    </script>
+</body>
+</html>

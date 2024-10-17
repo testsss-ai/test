@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Service</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="services.html">Available Services</a></li>
+            <li><a href="book.html">Book a Service</a></li>
+            <li><a href="booking_history.html">Your Booking History</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Book a Service Section -->
+    <section id="book">
+        <h2>Book a Service</h2>
+        <form onsubmit="handleBooking(event)">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="service">Select a Service</label>
+            <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="service1">Service 1</option>
+                <option value="service2">Service 2</option>
+                <option value="service3">Service 3</option>
+            </select>
+
+            <label for="date">Select a Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <script>
+        async function handleBooking(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = {
+                username: document.getElementById('username').value,
+                service: document.getElementById('service').value,
+                date: document.getElementById('date').value,
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/book', { // Ensure this matches your server
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    window.location.href = 'booking_history.html'; // Redirect to booking history
+                } else {
+                    const errorData = await response.text(); // Get raw text response
+                    try {
+                        const jsonErrorData = JSON.parse(errorData); // Attempt to parse as JSON
+                        alert('Booking failed: ' + (jsonErrorData.message || 'Unknown error'));
+                    } catch (e) {
+                        alert('Booking failed: ' + errorData); // Show raw error text if parsing fails
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error.message);
+            }
+        }
+
+        // Add date validation
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById('date').setAttribute('min', today);
+    </script>
+
+</body>
+
+</html>

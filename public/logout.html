@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function logoutAndRedirect() {
+            // Here, you can add logic to clear any local data (if needed), like removing tokens
+            // Example: localStorage.removeItem('authToken');
+            
+            // Redirect to signup page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'signup.html';
+            }, 2000); // Delay of 2 seconds
+        }
+
+        // Automatically redirect to signup after loading the page
+        window.onload = logoutAndRedirect;
+    </script>
+</head>
+<body>
+    <div class="message">
+        <p>Logging you out...</p>
+        <p>Please wait while we redirect you to the signup page.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #d1843d, #fb558a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        section {
+            background-color: rgb(18, 156, 110);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(39, 144, 205, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #4e2a2a;
+        }
+
+        form div {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 500;
+            color: #582f2f;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #2072a981;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #ccbd49;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #a777e3;
+            background-color: #fff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #7741b8, #3a4878);
+            transform: scale(1.05);
+        }
+
+        #error-message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgba(38, 179, 211, 0.856);
+            text-align: left;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #f9faf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #56367d;
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 20px;
+            }
+
+            button[type="submit"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+    <script>
+        async function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const errorContainer = document.getElementById('error-message'); // Clear previous errors
+                errorContainer.textContent = '';
+
+                if (response.ok) {
+                    alert('Sign up successful! Redirecting to login page...');
+                    window.location.href = 'login.html';
+                } else {
+                    const errorData = await response.json();
+                    errorContainer.textContent = errorData.error || 'Unknown error';
+                }
+            } catch (error) {
+                alert('An error occurred: ' + error.message);
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <section>
+        <h2>Create Your Account</h2>
+        <form onsubmit="handleFormSubmit(event)">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required aria-required="true">
+            </div>
+            
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+            </div>
+            
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required aria-required="true">
+            </div>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="error-message"></div>
+        <p>Already have an account? <a href="login.html">Log in here</a></p>
+    </section>
+
+</body>
+</html>

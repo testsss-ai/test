@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Services</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        .service {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .service img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .service h3 {
+            margin: 0;
+        }
+        .book-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .book-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="services.html">Available Services</a></li>
+            <li><a href="book.html">Book a Service</a></li>
+            <li><a href="booking_history.html">Your Booking History</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Available Services Section -->
+    <section id="services">
+        <h2>Available Services</h2>
+        <div class="service">
+            <img src="service1.jpg" alt="Service 1">
+            <div>
+                <h3>Service 1</h3>
+                <p>Description for Service 1. This service includes XYZ features and benefits.</p>
+                <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
+            </div>
+        </div>
+        <div class="service">
+            <img src="service2.jpg" alt="Service 2">
+            <div>
+                <h3>Service 2</h3>
+                <p>Description for Service 2. This service offers ABC options and advantages.</p>
+                <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
+            </div>
+        </div>
+        <div class="service">
+            <img src="service3.jpg" alt="Service 3">
+            <div>
+                <h3>Service 3</h3>
+                <p>Description for Service 3. This service is tailored to meet your needs.</p>
+                <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

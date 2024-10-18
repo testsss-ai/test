@@ -39,6 +39,7 @@
             border-radius: 5px;
             padding: 15px;
             background-color: #f9f9f9;
+            margin-top: 20px;
         }
         .booking-item {
             margin-bottom: 10px;
@@ -46,6 +47,9 @@
             border: 1px solid #eaeaea;
             border-radius: 4px;
             background-color: #ffffff;
+        }
+        #no-bookings {
+            display: none;
         }
     </style>
 </head>
@@ -72,7 +76,7 @@
 
     <script>
         // Assuming you have stored the username after login (using session or localStorage)
-        const username = localStorage.getItem('username') || 'testUser'; // Change 'testUser' to the default username or replace with session-based user
+        const username = localStorage.getItem('username') || 'testUser'; // Change 'testUser' to the default username
 
         // Function to fetch booking history
         async function fetchBookingHistory() {
@@ -83,6 +87,7 @@
                 }
 
                 const bookings = await response.json();
+                console.log('Bookings fetched:', bookings); // Corrected log
 
                 // Select the booking list element
                 const bookingList = document.getElementById('booking-list');

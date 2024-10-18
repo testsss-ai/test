@@ -12,7 +12,7 @@ const BookingSchema = new mongoose.Schema({
   },
 });
 
-// Modify the User schema to include an array of bookings
+// Define the User schema
 const userSchema = new mongoose.Schema({
   username: {
     type: String,

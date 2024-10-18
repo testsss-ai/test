@@ -8,12 +8,12 @@
     <script>
         async function handleLogin(event) {
             event.preventDefault(); // Prevent default form submission
-
+    
             const formData = {
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value
             };
-
+    
             try {
                 const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
@@ -22,8 +22,11 @@
                     },
                     body: JSON.stringify(formData)
                 });
-
+    
                 if (response.ok) {
+                    const userData = await response.json(); // Get the user data response
+                    localStorage.setItem('username', userData.username); // Store username in localStorage
+                    
                     // Redirect to main.html after successful login
                     window.location.href = 'main.html';  // Update this line
                 } else {
@@ -36,6 +39,7 @@
             }
         }
     </script>
+    
 </head>
 <body>
 

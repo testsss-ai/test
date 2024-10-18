@@ -131,8 +131,10 @@ app.get('/bookings/:username', async (req, res) => {
   try {
       const bookings = await Booking.find({ username });
       if (!bookings.length) {
+        
           return res.status(404).json({ message: 'No bookings found for this user.' });
       }
+      
       res.status(200).json(bookings);
   } catch (error) {
       console.error('Error fetching bookings:', error);

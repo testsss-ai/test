@@ -5,58 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Services</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+
     <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif; /* Use custom Google font */
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Ensure horizontal scrolling doesn't occur */
         }
+
         nav {
             background-color: #333;
             color: white;
             padding: 15px;
         }
+
         nav ul {
             list-style: none;
             padding: 0;
         }
+
         nav ul li {
             display: inline;
             margin-right: 20px;
         }
+
         nav a {
             color: white;
             text-decoration: none;
         }
+
         section {
             padding: 20px;
         }
+
+        /* Style for the service cards */
         .service {
             border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            background-color: #f9f9f9;
         }
+
+        /* Increase image size */
         .service img {
-            width: 100px;
+            width: 200px; /* Adjust width */
             height: auto;
             margin-right: 20px;
+            border-radius: 5px;
         }
+
+        /* Style service headings and text */
         .service h3 {
-            margin: 0;
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
         }
+
+        .service p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Style the "Book Now" button */
         .book-btn {
             background-color: #007BFF;
             color: white;
-            padding: 10px;
+            padding: 10px 15px;
             border: none;
             border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
         }
+
         .book-btn:hover {
             background-color: #0056b3;
+        }
+
+        /* Enable vertical scrolling */
+        section {
+            max-height: 80vh;
+            overflow-y: auto; /* Add vertical scrolling */
         }
     </style>
 </head>
@@ -75,30 +110,37 @@
     <!-- Available Services Section -->
     <section id="services">
         <h2>Available Services</h2>
+
+        <!-- Service 1 -->
         <div class="service">
-            <img src="service1.jpg" alt="Service 1">
+            <img src="https://www.travelandleisure.com/thmb/wdUcyBQyQ0wUVs4wLahp0iWgZhc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/taj-mahal-agra-india-TAJ0217-9eab8f20d11d4391901867ed1ce222b8.jpg" alt="Service 1">
             <div>
-                <h3>Service 1</h3>
-                <p>Description for Service 1. This service includes XYZ features and benefits.</p>
+                <h3>Taj Mahal</h3>
+                <p>The Taj Mahal is an ivory-white marble mausoleum on the south bank of the Yamuna river in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan (reigned from 1628 to 1658), to house the tomb of his favourite wife, Mumtaz.</p>
                 <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
             </div>
         </div>
+
+        <!-- Service 2 -->
         <div class="service">
-            <img src="service2.jpg" alt="Service 2">
+            <img src="https://cdn2.advanceinfotech.org/bharatdirectory.in/1200x675/business/18/lotus-temple-0-1679466537.webp" alt="Service 2">
             <div>
-                <h3>Service 2</h3>
-                <p>Description for Service 2. This service offers ABC options and advantages.</p>
+                <h3>Lotus Temple</h3>
+                <p>The Lotus Temple, located in Delhi, India, is a Bahá'í House of Worship that was dedicated in December 1986, costing $10 million. Notable for its flowerlike shape, it has become a prominent attraction in the city.</p>
                 <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
             </div>
         </div>
+
+        <!-- Service 3 -->
         <div class="service">
-            <img src="service3.jpg" alt="Service 3">
+            <img src="https://backpackersunited.in/_next/image?url=https%3A%2F%2Fbpu-images-v1.s3.eu-north-1.amazonaws.com%2Fuploads%2F1721737568260_Charminar%203.jpg&w=3840&q=75" alt="Service 3">
             <div>
-                <h3>Service 3</h3>
-                <p>Description for Service 3. This service is tailored to meet your needs.</p>
+                <h3>Charminar</h3>
+                <p>The Charminar is a monument and mosque in Hyderabad, India. The structure was built in 1591 AD. It is the most famous building of Hyderabad and also one of the most famous buildings in India. It was built by Muhammad Quli Qutb Shahi to celebrate the end of a deadly plague.</p>
                 <button class="book-btn" onclick="window.location.href='book.html'">Book Now</button>
             </div>
         </div>
+
     </section>
 
 </body>

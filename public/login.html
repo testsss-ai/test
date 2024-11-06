@@ -28,7 +28,7 @@
                     localStorage.setItem('username', userData.username); // Store username in localStorage
                     
                     // Redirect to main.html after successful login
-                    window.location.href = 'main.html';  // Update this line
+                    window.location.href = 'book.html';  // Update this line
                 } else {
                     const errorData = await response.json(); // Get error response
                     alert('Login failed: ' + (errorData.message || 'Unknown error')); // Show error message
